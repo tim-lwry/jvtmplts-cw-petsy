@@ -43,7 +43,7 @@ public class ARequestController {
         Adopter adopter = userRepository.findByUsername(request.getUserPrincipal().getName());
         model.addAttribute("animal", animal);
 
-        if(adoptionRequestRepository.findByAnimal(animal) == null) {
+        if (adoptionRequestRepository.findByAnimal(animal) == null) {
 
             AdoptionRequest adoptionRequest = new AdoptionRequest();
             adoptionRequest.setAnimal(animal);
@@ -51,8 +51,7 @@ public class ARequestController {
             adoptionRequestRepository.save(adoptionRequest);
 
             redirectAttributes.addFlashAttribute("success", "Заявка успешно добавлена!😺");
-        }
-        else{
+        } else {
             redirectAttributes.addFlashAttribute("success", "Заявка уже отправлена!😽");
         }
         //model.addAttribute();

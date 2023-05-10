@@ -7,6 +7,7 @@ import ru.petsy.jtcw.entities.Animal;
 
 public interface AdoptionRequestRepository extends JpaRepository<AdoptionRequest, Integer> {
     AdoptionRequest findByAdopter(String adopter);
+
     AdoptionRequest findByAnimal(Animal animal);
 
 }

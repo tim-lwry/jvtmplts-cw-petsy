@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Главная</title>
     <link rel="icon" th:href="@{/icons/petsyicon.webp}">
 </head>
 <body style="background-color:  #dfdfe9;">
@@ -17,24 +24,34 @@
 
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <a href="/index">
-                    <img alt="Petsy" class="mx-3" style="margin-top:10px" width="100px" src="../static/icons/petsy.png" th:src="@{/icons/petsy.png}">
+                        <img alt="Petsy" class="mx-3" style="margin-top:10px" width="100px"
+                             src="../static/icons/petsy.png" th:src="@{/icons/petsy.png}">
                     </a>
-                    <button class="navbar-toggler" style="border: 2px solid #cd58d1; border-radius: 20px" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" style="border: 2px solid #cd58d1; border-radius: 20px" type="button"
+                            data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                            aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item" >
-                                <a class="nav-link h4 px-4 mt-3" style="color: white; background-color: #cd58d1; border-radius: 30px" href="/home">Главная</a>
+                            <li class="nav-item">
+                                <a class="nav-link h4 px-4 mt-3"
+                                   style="color: white; background-color: #cd58d1; border-radius: 30px" href="/home">Главная</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link h4 px-4 mt-3" href="/animals">Животные</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle h4 px-4 mt-3" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${username}"></a>
-                                <div class="dropdown-menu dropdown-menu-right p-0" style="border: none" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item mb-2" th:attr="href=${linkInOrAccount}" style="background-color: #cd58d1; color: white;" th:text="${textInOrAccount}">Войти</a>
-                                    <a class="dropdown-item" th:attr="href=${linkOutOrUp}" style="background-color: grey; color: white; " th:text="${textOutOrUp}">Выйти</a>
+                                <a class="nav-link dropdown-toggle h4 px-4 mt-3"
+                                   id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false" th:text="${username}"></a>
+                                <div class="dropdown-menu dropdown-menu-right p-0"
+                                     style="border: none; background-color: transparent"
+                                     aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item mb-2" th:attr="href=${linkInOrAccount}"
+                                       style="background-color: #cd58d1; color: white; border-radius:25px" th:text="${textInOrAccount}">Войти</a>
+                                    <a class="dropdown-item" th:attr="href=${linkOutOrUp}"
+                                       style="background-color: grey; color: white; border-radius:25px" th:text="${textOutOrUp}">Выйти</a>
                                 </div>
                             </li>
                         </ul>
@@ -45,8 +62,10 @@
                 <div class="row justify-content-center text-center">
                     <div class="col-10 col-xl-5">
                         <p class="h3 font-weight-normal my-1"> Приют для бездомных животных </p>
-                        <img alt="Petsy" class="my-1"  width="200px" src="../static/icons/petsy.png" th:src="@{/icons/petsy.png}">
-                        <img alt="cat?" class="mx-auto rounded border"  width="100%" src="../static/images/animals/cat.jpg" th:src="@{/images/animals/cat.jpg}">
+                        <img alt="Petsy" class="my-1" width="200px" src="../static/icons/petsy.png"
+                             th:src="@{/icons/petsy.png}">
+                        <img alt="cat?" class="mx-auto rounded border" width="100%"
+                             src="../static/images/animals/cat.jpg" th:src="@{/images/animals/cat.jpg}">
                         <p class="h4 font-weight-normal my-4"> Спасибо вам за доброту!😸 </p>
                     </div>
                 </div>
@@ -67,7 +86,9 @@
                         <div class="h4 font-weight-normal">
                             144 тысячи животных — в приютах.
                         </div>
-                        <p class="h3 font-weight-normal my-4" style="color: #cd58d1"> Возьми друга! </p>
+                        <a href="/animals">
+                            <p class="h3 font-weight-normal my-4" style="color: #cd58d1"> Возьми друга! </p>
+                        </a>
                     </div>
                 </div>
 
@@ -82,8 +103,10 @@
                         </div>
                         <div class="row justify-content-center text-center my-1">
                             <div class="col-6 col-xl-3">
-                                <img alt="github?" class="mx-auto" width="30px" src="../static/icons/github.png" th:src="@{/icons/github.png}">
-                                <a class="text-light" target="_blank" href="https://github.com/tim-lwry/jvtmplts-cw-petsy">GitHub</a>
+                                <img alt="github?" class="mx-auto" width="30px" src="../static/icons/github.png"
+                                     th:src="@{/icons/github.png}">
+                                <a class="text-light" target="_blank"
+                                   href="https://github.com/tim-lwry/jvtmplts-cw-petsy">GitHub</a>
                             </div>
                             <div class="col-6 col-xl-3">2023</div>
                         </div>

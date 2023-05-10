@@ -14,6 +14,7 @@ import ru.petsy.jtcw.repositories.AnimalRepository;
 import ru.petsy.jtcw.repositories.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class AnimalsController {
 
@@ -47,9 +48,9 @@ public class AnimalsController {
 
         model.addAttribute("animal", animal);
 
-        if(success.getClass() == String.class){
+        if (success.getClass() == String.class) {
             model.addAttribute("success", success);
-        }else
+        } else
             model.addAttribute("success", "");
 
         return "animal";

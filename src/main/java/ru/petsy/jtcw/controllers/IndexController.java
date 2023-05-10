@@ -16,8 +16,7 @@ public class IndexController {
             model.addAttribute("textOutOrUp", "Выйти");
             model.addAttribute("linkInOrAccount", "/account");
             model.addAttribute("textInOrAccount", "Аккаунт");
-        }
-        else {
+        } else {
             model.addAttribute("username", "Аккаунт");
             model.addAttribute("linkOutOrUp", "/registration");
             model.addAttribute("textOutOrUp", "Зарегистрироваться");

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Регистрация</title>
     <link rel="icon" th:href="@{/icons/petsyicon.webp}">
@@ -13,49 +14,59 @@
         function redirect() {
             location.href="/login"
         }
+
     </script>
 </head>
 <body th:attr="onload=${onload}" style="background-color: #dfdfe9;">
-    <div class="mt-5 container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-10 col-xl-6">
-                <div style="background-color: white; border-radius: 25px">
-                    <a href="/index">
-                        <img alt="petsy?" class="mx-auto d-block" width="200px" style="padding-top:50px" src="../static/icons/petsy.png" th:src="@{/icons/petsy.png}">
-                    </a>
-                    <p class="text-center display-4" style="color:#cd58d1">Регистрация</p>
+<div class="mt-5 container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-10 col-xl-6">
+            <div style="background-color: white; border-radius: 25px">
+                <a href="/index">
+                    <img alt="petsy?" class="mx-auto d-block" width="200px" style="padding-top:50px"
+                         src="../static/icons/petsy.png" th:src="@{/icons/petsy.png}">
+                </a>
+                <p class="text-center display-4" style="color:#cd58d1">Регистрация</p>
 
-                    <form action="#" th:action="@{/registration}" th:object="${adopter}" method="post">
+                <form action="#" th:action="@{/registration}" th:object="${adopter}" method="post">
 
-                        <div class="mx-5 px-5 form-group form-group-lg">
-                            <label for="username" class="h4">Логин</label>
-                            <input type="text" id="username" class="form-control input-lg" th:field="*{username}"/>
-                            <label for="username" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: red"></label>
-                        </div>
+                    <div class="mx-5 px-5 form-group form-group-lg">
+                        <label for="username" class="h4">Логин</label>
+                        <input type="text" id="username" class="form-control input-lg" th:field="*{username}"/>
+                        <label for="username" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                               style="color: red"></label>
+                    </div>
 
-                        <div class="mx-5 px-5 form-group form-group-lg">
-                            <label for="password" class="h4">Пароль</label>
-                            <input type="password" id="password" class="form-control" th:field="*{password}"/>
-                            <label for="password" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red"></label>
-                        </div>
+                    <div class="mx-5 px-5 form-group form-group-lg">
+                        <label for="password" class="h4">Пароль</label>
+                        <input type="password" id="password" class="form-control" th:field="*{password}"/>
+                        <label for="password" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                               style="color: red"></label>
+                    </div>
 
-                        <div class="mx-5 px-5 form-group form-group-lg">
-                            <label for="repeat" class="h4">Повторите пароль</label>
-                            <input type="password" id="repeat" class="form-control" th:field="*{repeated}" />
-                            <label for="repeat" th:if="${#fields.hasErrors('repeated')}" th:errors="*{repeated}" style="color: red"></label>
-                            <label for="repeat" style="color: red" th:text="${reperr}"></label>
-                        </div>
+                    <div class="mx-5 px-5 form-group form-group-lg">
+                        <label for="repeat" class="h4">Повторите пароль</label>
+                        <input type="password" id="repeat" class="form-control" th:field="*{repeated}"/>
+                        <label for="repeat" th:if="${#fields.hasErrors('repeated')}" th:errors="*{repeated}"
+                               style="color: red"></label>
+                        <label for="repeat" style="color: red" th:text="${reperr}"></label>
+                    </div>
 
-                        <div class="d-flex justify-content-center m-3">
-                            <button type="submit" class="btn btn-secondary btn-lg" style="background-color: #cd58d1; border-color: white; border-radius: 30px">Зарегистрироваться</button>
-                            <button type="button" onclick="redirect()" class="btn btn-secondary btn-lg pb-3 mx-4" style="background-color: #cd58d1; border-color: white; border-radius: 30px">Войти</button>
-                        </div>
-                    </form>
+                    <div class="d-flex justify-content-center m-3">
+                        <button type="submit" class="btn btn-secondary btn-lg"
+                                style="background-color: #cd58d1; border-color: white; border-radius: 30px">
+                            Зарегистрироваться
+                        </button>
+                        <button type="button" onclick="redirect()" class="btn btn-secondary btn-lg pb-3 mx-4"
+                                style="background-color: #cd58d1; border-color: white; border-radius: 30px">Войти
+                        </button>
+                    </div>
+                </form>
 
-                    <p class="text-center h1 fw-bold m-3 pb-3" style="color: #5707f7" th:text="${message}">&nbsp</p>
-                </div>
+                <p class="text-center h1 fw-bold m-3 pb-3" style="color: green" th:text="${message}">&nbsp</p>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
