@@ -5,10 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.petsy.jtcw.entities.Adopter;
 import ru.petsy.jtcw.entities.AdoptionRequest;
 import ru.petsy.jtcw.entities.Animal;
+import ru.petsy.jtcw.repositories.AdoptionRequestRepository;
 import ru.petsy.jtcw.repositories.AnimalRepository;
 import ru.petsy.jtcw.repositories.UserRepository;
 
@@ -24,52 +28,35 @@ public class ARequestController {
     @Autowired
     AnimalRepository animalRepository;
 
-    @GetMapping("/request")
-    public String showOrderPage(HttpServletRequest request, Model model) {
-        model.addAttribute("adoption_request", new AdoptionRequest());
+    @Autowired
+    AdoptionRequestRepository adoptionRequestRepository;
 
+    @GetMapping("/request/{id}")
+    public String makeRequest(@PathVariable int id, HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
         model.addAttribute("username", request.getUserPrincipal().getName());
         model.addAttribute("linkOutOrUp", "/logout");
-        model.addAttribute("textOutOrUp", "LogOut");
+        model.addAttribute("textOutOrUp", "Выйти");
         model.addAttribute("linkInOrAccount", "/account");
-        model.addAttribute("textInOrAccount", "Account");
+        model.addAttribute("textInOrAccount", "Аккаунт");
 
-        model.addAttribute("confirm", "false");
-        model.addAttribute("another", "true");
+        Animal animal = animalRepository.findById(id);
+        Adopter adopter = userRepository.findByUsername(request.getUserPrincipal().getName());
+        model.addAttribute("animal", animal);
 
-        return "request";
-    }
+        if(adoptionRequestRepository.findByAnimal(animal) == null) {
 
-    @PostMapping("/request")
-    public String completeOrder(@Valid AdoptionRequest adoptionRequest, BindingResult bindingResult, Model model, HttpServletRequest request) {
-        model.addAttribute("username", request.getUserPrincipal().getName());
-        model.addAttribute("linkOutOrUp", "/logout");
-        model.addAttribute("textOutOrUp", "LogOut");
-        model.addAttribute("linkInOrAccount", "/account");
-        model.addAttribute("textInOrAccount", "Account");
+            AdoptionRequest adoptionRequest = new AdoptionRequest();
+            adoptionRequest.setAnimal(animal);
+            adoptionRequest.setAdopter(adopter);
+            adoptionRequestRepository.save(adoptionRequest);
 
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("confirm", "false");
-            model.addAttribute("another", "true");
-            model.addAttribute(adoptionRequest);
-            return "request";
+            redirectAttributes.addFlashAttribute("success", "Заявка успешно добавлена!😺");
         }
+        else{
+            redirectAttributes.addFlashAttribute("success", "Заявка уже отправлена!😽");
+        }
+        //model.addAttribute();
 
-        Adopter user = userRepository.findByUsername(request.getUserPrincipal().getName());
-        Animal animal = animalRepository.findByName(adoptionRequest.getAnimal().getName());
-
-        adoptionRequest.setAdopter(user);
-        adoptionRequest.setAnimal(animal);
-
-        user.adoptionRequests.add(adoptionRequest);
-        userRepository.save(user);
-
-        animal.adoptionRequests.add(adoptionRequest);
-        animalRepository.save(animal);
-
-        model.addAttribute("confirm", "true");
-        model.addAttribute("another", "false");
-        model.addAttribute("message", "Заявка была подана");
-        return "request";
+        return "redirect:/animal/" + String.valueOf(id);
     }
 }

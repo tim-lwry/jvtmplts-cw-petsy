@@ -26,8 +26,6 @@ public class AccountController {
     @Autowired
     AdoptionRequestRepository adoptionRequestRepository;
 
-    @Autowired
-    AnimalRepository animalRepository;
 
     @GetMapping("/account")
     public String showAccountPage(HttpServletRequest request, Model model) {
@@ -47,7 +45,7 @@ public class AccountController {
     }
 
     @GetMapping("/account/{id}")
-    public String deleteOrder(@PathVariable int id, HttpServletRequest request, Model model) {
+    public String deleteRequest(@PathVariable int id, HttpServletRequest request, Model model) {
         model.addAttribute("username", request.getUserPrincipal().getName());
         model.addAttribute("linkOutOrUp", "/logout");
         model.addAttribute("textOutOrUp", "Выйти");
