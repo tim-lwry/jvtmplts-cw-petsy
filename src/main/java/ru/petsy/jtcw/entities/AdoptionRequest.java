@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class AdoptionRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
 
     @ManyToOne(fetch = FetchType.LAZY)

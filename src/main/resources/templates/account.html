@@ -58,7 +58,7 @@
                     <div class="col-11 col-xl-10">
                         <p class="h3 font-weight-normal my-4">Список ваших заявок</p>
 
-                        <div style="background-color: #cd58d1; border-radius: 25px; overflow: hidden" class="pb-2">
+                        <div style="background-color: #cd58d1; border-radius: 5px; padding: 10px; overflow: hidden" class="pb-2">
                             <div class="h3 text-left" style="color: white">
                                 <div th:if="${requests.empty}">
                                     <p class="h3 font-weight-normal my-4 text-center">Список пуст. Возьмите друга!</p>
@@ -66,16 +66,16 @@
 
                                 <div class="row">
                                     <div class="col-1 ml-4">Id</div>
-                                    <div class="col-3 col-xl-2">When</div>
-                                    <div class="col-2 col-xl-3">From</div>
-                                    <div class="col-2 col-xl-3">To</div>
-                                    <div class="col-3 col-xl-2 mr-4">When</div>
+                                    <div class="col-2 col-xl-2">Животное</div>
                                 </div>
                                 <hr class="mx-3" style="background-color: white">
 
                                 <div th:each="request : ${requests}">
                                     <div class="row">
-                                        <div class="col-1 ml-4 mt-2" th:text="${request.id}">a</div>
+                                        <div class="col-1 ml-4 mt-2" th:text="${request.id}"></div>
+                                        <div class="col-2 ml-4 mt-1" th:text="${request.animal.race}"></div>
+                                        <div class="col-2 ml-4 mt-1" th:text="${request.animal.name}"></div>
+                                        <img class="col-4 ml-4 mt-2 round" style="border-radius: 25px" th:alt="${request.animal.name}" width="50px" th:src=${request.animal.image_address}>
                                         <div>
                                             <button type="button" th:attr="onclick=|redirect('${request.id}')|" title="Отменить" class="btn btn-secondary btn-lg mr-3" style="color: black; background-color: white; border: 3px solid red; border-radius: 30px; position: absolute; right: 0">X</button>
                                         </div>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
 
-                <p class="h3 font-weight-normal mb-5 mt-3 text-center" style="color: #cd58d1"> Спасибо за вашу доброту! </p>
+                <p class="h3 font-weight-normal mb-5 mt-3 text-center" style="color: #cd58d1"> Спасибо за вашу доброту!😸 </p>
 
                 <footer class="footer py-3" style="background-color: #cd58d1; color: white; border-radius: 0 0 0 25px">
                     <div class="mx-5">
@@ -101,7 +101,7 @@
                         <div class="row justify-content-center text-center my-1">
                             <div class="col-6 col-xl-3">
                                 <img alt="github?" class="mx-auto" width="30px" src="../static/icons/github.png" th:src="@{/icons/github.png}">
-                                <a class="text-light" target="_blank" href="https://github.com/">GitHub</a>
+                                <a class="text-light" target="_blank" href="https://github.com/tim-lwry/jvtmplts-cw-petsy">GitHub</a>
                             </div>
                             <div class="col-6 col-xl-3">2023</div>
                         </div>

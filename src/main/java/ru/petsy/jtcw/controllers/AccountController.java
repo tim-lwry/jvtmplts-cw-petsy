@@ -33,9 +33,9 @@ public class AccountController {
     public String showAccountPage(HttpServletRequest request, Model model) {
         model.addAttribute("username", request.getUserPrincipal().getName());
         model.addAttribute("linkOutOrUp", "/logout");
-        model.addAttribute("textOutOrUp", "LogOut");
+        model.addAttribute("textOutOrUp", "Выйти");
         model.addAttribute("linkInOrAccount", "/account");
-        model.addAttribute("textInOrAccount", "Account");
+        model.addAttribute("textInOrAccount", "Аккаунт");
         model.addAttribute("welcome", "Вы вошли как " + request.getUserPrincipal().getName() + "!");
 
         Adopter adopter = userRepository.findByUsername(request.getUserPrincipal().getName());
@@ -50,15 +50,16 @@ public class AccountController {
     public String deleteOrder(@PathVariable int id, HttpServletRequest request, Model model) {
         model.addAttribute("username", request.getUserPrincipal().getName());
         model.addAttribute("linkOutOrUp", "/logout");
-        model.addAttribute("textOutOrUp", "LogOut");
+        model.addAttribute("textOutOrUp", "Выйти");
         model.addAttribute("linkInOrAccount", "/account");
-        model.addAttribute("textInOrAccount", "Account");
+        model.addAttribute("textInOrAccount", "Аккаунт");
         model.addAttribute("welcome", "Вы вошли как " + request.getUserPrincipal().getName() + "!");
 
         Adopter adopter = userRepository.findByUsername(request.getUserPrincipal().getName());
         if (adoptionRequestRepository.findById(id).isPresent()) {
             adopter.adoptionRequests.remove(adoptionRequestRepository.getById(id));
             adoptionRequestRepository.deleteById(id);
+            System.out.println("Found");
         }
         userRepository.save(adopter);
 

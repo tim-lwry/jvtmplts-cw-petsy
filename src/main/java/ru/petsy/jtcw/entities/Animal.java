@@ -19,7 +19,7 @@ import java.util.List;
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     private String name;
 
@@ -34,6 +34,8 @@ public class Animal {
     private String color;
 
     private String info;
+
+    private String image_address;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "animal")
     public List<AdoptionRequest> adoptionRequests = new ArrayList<>();
