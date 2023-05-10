@@ -6,8 +6,14 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Животные</title>
     <link rel="icon" th:href="@{/icons/petsyicon.webp}">
+
+    <script>
+        function redirect(id) {
+            location.href="/animal/" + id
+        }
+    </script>
 </head>
 <body style="background-color:  #dfdfe9;">
 <div class="my-4 container-fluid">
@@ -17,59 +23,64 @@
 
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <a href="/index">
-                    <img alt="Petsy" class="mx-3" style="margin-top:10px" width="100px" src="../static/icons/petsy.png" th:src="@{/icons/petsy.png}">
+                        <img alt="Petsy" class="mx-3" style="margin-top:10px" width="100px" src="../static/icons/petsy.png" th:src="@{/icons/petsy.png}">
                     </a>
                     <button class="navbar-toggler" style="border: 2px solid #cd58d1; border-radius: 20px" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item" >
-                                <a class="nav-link h4 px-4 mt-3" style="color: white; background-color: #cd58d1; border-radius: 30px" href="/home">Главная</a>
-                            </li>
                             <li class="nav-item">
-                                <a class="nav-link h4 px-4 mt-3" href="/animals">Животные</a>
+                                <a class="nav-link h4 px-4 mt-3" href="/home">Главная</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link h4 px-4 mt-3" style="color: white; background-color: #cd58d1; border-radius: 30px" href="/animals">Животные</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle h4 px-4 mt-3" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${username}"></a>
                                 <div class="dropdown-menu dropdown-menu-right p-0" style="border: none" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item mb-2" th:attr="href=${linkInOrAccount}" style="background-color: #cd58d1; color: white;" th:text="${textInOrAccount}">Войти</a>
-                                    <a class="dropdown-item" th:attr="href=${linkOutOrUp}" style="background-color: grey; color: white; " th:text="${textOutOrUp}">Выйти</a>
+                                    <a class="dropdown-item mb-2" th:attr="href=${linkInOrAccount}" style="background-color: #cd58d1; color: white; border-radius: 25px" th:text="${textInOrAccount}">Войти</a>
+                                    <a class="dropdown-item" th:attr="href=${linkOutOrUp}" style="background-color: grey; color: white; border-radius: 25px" th:text="${textOutOrUp}">Выйти</a>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </nav>
-                <hr class="mx-3 rounded" style="background-color: #cd58d1">
+                <hr class="mx-3" style="background-color: #cd58d1">
 
                 <div class="row justify-content-center text-center">
-                    <div class="col-10 col-xl-5">
-                        <p class="h3 font-weight-normal my-1"> Приют для бездомных животных </p>
-                        <img alt="Petsy" class="my-1"  width="200px" src="../static/icons/petsy.png" th:src="@{/icons/petsy.png}">
-                        <img alt="cat?" class="mx-auto rounded border"  width="100%" src="../static/images/animals/cat.jpg" th:src="@{/images/animals/cat.jpg}">
-                        <p class="h4 font-weight-normal my-4"> Спасибо вам за доброту!😸 </p>
-                    </div>
-                </div>
-                <hr class="mx-3">
+                    <div class="col-11 col-xl-10">
 
-                <div class="row justify-content-center text-center mb-3">
-                    <div class="col-10 col-xl-5">
-                        <p class="h3 font-weight-normal my-3"> Статистика </p>
-                        <div class="h4 font-weight-normal">
-                            Эксперты выяснили, что всего в России насчитывается 67 млн кошек и собак.
+                        <div style="background-color: #cd58d1; border-radius: 5px; padding: 10px; overflow: hidden" class="pb-2">
+                            <div class="h3 text-left" style="color: white">
+                                <div th:if="${animals.empty}">
+                                    <p class="h3 font-weight-normal my-4 text-center">Пока никого нет!😸</p>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-1 ml-4">Id</div>
+                                    <div class="col-2 col-xl-2">Животное</div>
+                                </div>
+                                <hr class="mx-3" style="background-color: white">
+
+                                <div th:each="animal : ${animals}">
+                                    <a th:attr="onclick=|redirect('${animal.id}')|">
+                                    <div class="row">
+                                        <div class="col-1 ml-4 mt-2" th:text="${animal.id}"></div>
+                                        <div class="col-2 ml-3 mt-1" th:text="${animal.race}"></div>
+                                        <div class="col-3 ml-3 mt-1" th:text="${animal.name}"></div>
+                                        <img class="col-4 ml-4 mt-2 round" style="border-radius: 25px" th:alt="${animal.name}" width="50px" th:src=${animal.image_address}>
+                                    </div>
+                                    </a>
+                                    <hr class="mx-3 mt-4" style="background-color: white">
+                                </div>
+                            </div>
                         </div>
-                        <div class="h4 font-weight-normal">
-                            Из них 4,1 млн, или 6%, — бездомные.
-                        </div>
-                        <div class="h4 font-weight-normal">
-                            3,2 млн кошек и 735 тысяч собак живут на улице.
-                        </div>
-                        <div class="h4 font-weight-normal">
-                            144 тысячи животных — в приютах.
-                        </div>
-                        <p class="h3 font-weight-normal my-4" style="color: #cd58d1"> Возьми друга! </p>
                     </div>
                 </div>
+
+
+                <p class="h3 font-weight-normal mb-5 mt-3 text-center" style="color: #cd58d1"> Спасибо за вашу доброту!😸 </p>
 
                 <footer class="footer py-3" style="background-color: #cd58d1; color: white; border-radius: 0 0 0 25px">
                     <div class="mx-5">
